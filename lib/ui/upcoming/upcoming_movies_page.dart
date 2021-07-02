@@ -81,7 +81,7 @@ class _UpcomingMoviesPageState extends State<UpcomingMoviesPage> {
   void _handleError(dynamic error) {
     String errorMessage = "";
     if (error is DioError) {
-      errorMessage = errorMessage;
+      errorMessage = error.message;
     } else {
       errorMessage = error.toString();
     }
