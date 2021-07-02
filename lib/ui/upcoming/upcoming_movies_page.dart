@@ -196,24 +196,22 @@ class _UpcomingGridTileState extends State<UpcomingGridTile> {
               },
             ),
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text("Popularity : ${widget.item.popularity}"),
-              StreamBuilder<bool>(
-                  initialData: false,
-                  stream: favoriteSubject,
-                  builder: (context, snapshot) {
-                    bool flag = snapshot.data!;
-                    return IconButton(
-                      icon: Icon(flag ? Icons.favorite : Icons.favorite_border),
-                      onPressed: () {
-                        prefs.setBool(widget.item.id.toString(), !flag);
-                        favoriteSubject.add(!flag);
-                      },
-                    );
-                  })
-            ],
+          Text("Popularity : ${widget.item.popularity}"),
+          Align(
+            alignment: Alignment.centerRight,
+            child: StreamBuilder<bool>(
+                initialData: false,
+                stream: favoriteSubject,
+                builder: (context, snapshot) {
+                  bool flag = snapshot.data!;
+                  return IconButton(
+                    icon: Icon(flag ? Icons.favorite : Icons.favorite_border),
+                    onPressed: () {
+                      prefs.setBool(widget.item.id.toString(), !flag);
+                      favoriteSubject.add(!flag);
+                    },
+                  );
+                }),
           )
         ],
       ),

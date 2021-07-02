@@ -19,7 +19,7 @@ class LocalStorage {
     "CREATE TABLE ${Constants.UPCOMING_MOVIE_TABLE}(id INTEGER PRIMARY KEY, poster_path TEXT, adult INTEGER, overview TEXT, release_date TEXT, genre_ids TEXT, original_title TEXT, original_language TEXT, title TEXT, backdrop_path TEXT, popularity REAL, vote_count INTEGER, video INTEGER, vote_average REAL)",
   ];
 
-  void init() async {
+  Future<void> init() async {
     _db = await openDatabase(
       join(await getDatabasesPath(), Constants.DB_NAME),
       version: _migrationScripts.length,

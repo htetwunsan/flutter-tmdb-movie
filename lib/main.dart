@@ -14,8 +14,10 @@ late SharedPreferences prefs;
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   Bloc.observer = SimpleBlocObserver();
-  GetIt.instance.registerSingleton<Repository>(
-      Repository(LocalStorage()..init(), TmdbService()));
+  final localStorage = LocalStorage();
+  await localStorage.init();
+  GetIt.instance
+      .registerSingleton<Repository>(Repository(localStorage, TmdbService()));
   runApp(MyApp());
 }
 
